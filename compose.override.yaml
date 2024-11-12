@@ -1,0 +1,16 @@
+services:
+
+  php:
+    build:
+      target: dev
+    env_file: docker/php/.env
+    volumes:
+      - ./app:/app
+      - ./docker/php/.env:/app/.env
+
+  nginx:
+    volumes:
+      - ./docker/nginx/files/etc/nginx/conf.d:/etc/nginx/conf.d
+      - ./app/public:/app/public
+    ports:
+      - "8080:80"
